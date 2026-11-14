@@ -1,335 +1,71 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080d16">
-<title>ASHRAF ALI EMON | Network Scanner</title>
-
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071426">
+<title>ScienceLab — HSC Research Portal</title>
 <style>
-*{box-sizing:border-box}
-body{
-  margin:0;background:#080d16;color:#f4f7ff;
-  font-family:Arial,"Noto Sans Bengali",sans-serif;
-}
-header{
-  padding:23px 18px;background:#101827;
-  border-bottom:1px solid #263348;
-}
-.brand{font-size:21px;font-weight:bold;letter-spacing:1px}
-.sub{color:#94a3b8;font-size:13px;margin-top:7px}
-main{max-width:650px;margin:auto;padding:18px}
-h2{font-size:21px;margin:8px 0}
-p{line-height:1.6}
-.muted{color:#9eacc0;font-size:14px}
-.status{
-  background:#111c2c;border:1px solid #293950;
-  border-radius:16px;padding:17px;margin-bottom:17px;
-}
-.statusline{display:flex;align-items:center;gap:12px}
-.dot{
-  width:11px;height:11px;border-radius:50%;
-  background:#fbbf24;flex-shrink:0;
-}
-.dot.good{background:#34d399}
-.dot.bad{background:#fb7185}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.card{
-  background:#111c2c;border:1px solid #293950;
-  border-radius:15px;padding:17px;margin-bottom:13px;
-}
-.card h3{font-size:16px;margin:0 0 10px}
-.big{font-size:25px;font-weight:bold;margin:9px 0}
-.icon{font-size:28px;margin-bottom:12px}
-button{
-  border:0;border-radius:11px;padding:13px 15px;
-  background:#34d399;color:#062419;font-size:15px;
-  font-weight:bold;cursor:pointer;width:100%;
-}
-button:disabled{opacity:.6}
-.secondary{background:#243248;color:#fff}
-.danger{background:#7f2634;color:white}
-nav{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:6px;margin-bottom:18px;
-}
-nav button{
-  background:#152136;color:#b9c8dd;
-  padding:12px 4px;font-size:12px;
-}
-nav button.active{background:#34d399;color:#062419}
-.page{display:none}
-.page.active{display:block}
-.info{
-  border-left:3px solid #60a5fa;
-  padding:10px 12px;background:#132137;
-  border-radius:5px;font-size:13px;line-height:1.7;
-  margin:12px 0;
-}
-.row{
-  display:flex;justify-content:space-between;
-  gap:12px;padding:12px 0;
-  border-bottom:1px solid #263348;font-size:14px;
-}
-.row span:first-child{color:#9eacc0}
-.row span:last-child{text-align:right;overflow-wrap:anywhere}
-.history-item{
-  padding:14px 0;border-bottom:1px solid #293950;
-  line-height:1.7;font-size:14px;
-}
-footer{text-align:center;color:#728198;font-size:12px;padding:25px}
-</style>
-</head>
-
+:root{--bg:#071426;--panel:#10233b;--panel2:#142b47;--text:#eef6ff;--muted:#a9bdd3;--line:#28435f;--cyan:#54d6e8;--blue:#6e9cff;--green:#5ee0ae;--orange:#ffbd69}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(140deg,#071426,#0b1c32 55%,#102641);color:var(--text);font-family:system-ui,"Noto Sans Bengali",Arial,sans-serif;min-height:100vh}button,input,textarea,select{font:inherit}button{cursor:pointer}.layout{display:flex;min-height:100vh}.sidebar{width:255px;background:#08172a;border-right:1px solid var(--line);padding:22px 15px;position:fixed;inset:0 auto 0 0;overflow:auto;z-index:5}.brand{display:flex;gap:11px;align-items:center;padding:5px 8px 22px}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--cyan),var(--blue));display:grid;place-items:center;color:#071426;font-size:23px;font-weight:900}.brand strong{display:block;font-size:17px}.brand small{color:var(--muted)}.navlabel{color:#7894b2;font-size:11px;letter-spacing:1.5px;padding:15px 10px 7px}.nav button{width:100%;border:0;background:transparent;color:#c8d9eb;text-align:left;padding:11px 12px;border-radius:11px;margin:2px 0;display:flex;gap:12px;align-items:center}.nav button:hover,.nav button.active{background:#183653;color:white}.nav .ico{width:22px;text-align:center;font-size:17px}.sidefoot{margin-top:25px;padding:13px;color:var(--muted);font-size:12px;border:1px solid var(--line);border-radius:13px;line-height:1.6}.main{margin-left:255px;width:calc(100% - 255px);padding:25px 30px 55px;max-width:1600px}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:25px}.top h1{font-size:25px;margin:0}.top p{color:var(--muted);margin:5px 0 0;font-size:13px}.pill{background:#153451;border:1px solid #2c5275;padding:8px 13px;border-radius:99px;color:#bfeeff;font-size:12px}.welcome{background:linear-gradient(110deg,#153d5b,#1a3159 65%,#253b72);border:1px solid #326080;border-radius:22px;padding:27px;display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:20px;overflow:hidden}.welcome h2{font-size:25px;margin:0 0 8px}.welcome p{color:#c8e1f5;margin:0;line-height:1.7}.welcome .orb{font-size:65px;opacity:.9}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:17px 0 23px}.stat,.card{background:linear-gradient(145deg,#112943,#0e2138);border:1px solid var(--line);border-radius:17px;padding:18px}.stat small{color:var(--muted)}.stat strong{font-size:27px;display:block;margin:8px 0 2px}.stat span{font-size:12px;color:var(--green)}.sectionhead{display:flex;justify-content:space-between;align-items:center;margin:22px 0 12px;gap:10px}.sectionhead h2{font-size:18px;margin:0}.sectionhead p{margin:4px 0 0;color:var(--muted);font-size:12px}.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.tile{background:#102943;border:1px solid var(--line);border-radius:16px;padding:17px;min-height:130px;cursor:pointer;transition:.2s}.tile:hover{transform:translateY(-3px);border-color:var(--cyan)}.tile .big{font-size:25px}.tile h3{font-size:15px;margin:9px 0 5px}.tile p{color:var(--muted);font-size:12px;line-height:1.55;margin:0}.content{display:none}.content.active{display:block}.card h3{margin:0 0 12px}.muted{color:var(--muted)}.two{display:grid;grid-template-columns:1.15fr .85fr;gap:15px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.field{margin:11px 0}.field label{display:block;color:#b9cde1;font-size:12px;margin-bottom:6px}.field input,.field textarea,.field select,.search{width:100%;background:#091a2d;color:white;border:1px solid #31506e;border-radius:10px;padding:11px;outline:none}.field textarea{min-height:115px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--cyan)}.btn{border:0;border-radius:10px;background:linear-gradient(100deg,#35c9d9,#6d9eff);color:#06182a;font-weight:700;padding:10px 15px}.btn.secondary{background:#1b3855;color:#e6f4ff;border:1px solid #355775}.btn.danger{background:#633346;color:#ffe5ec}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.list{display:grid;gap:9px}.item{padding:12px;background:#0a1b2e;border:1px solid var(--line);border-radius:11px}.item strong{display:block}.item small{color:var(--muted)}.tag{display:inline-block;border-radius:99px;padding:3px 8px;background:#173b52;color:#aeeefa;font-size:11px;margin:3px}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:10px;border-bottom:1px solid var(--line);text-align:left}th{color:#9fc6df}.subject{border-left:3px solid var(--cyan)}.formula{font-family:ui-monospace,monospace;color:#b8f5dc;background:#0a1b2c;padding:10px;border-radius:9px;display:block;overflow-wrap:anywhere}.empty{padding:22px;text-align:center;color:var(--muted);border:1px dashed #34516d;border-radius:12px}.note{font-size:12px;color:var(--muted);line-height:1.6}.mobilebar{display:none}.footer{text-align:center;color:#7791ad;font-size:11px;margin-top:35px}.toast{position:fixed;bottom:20px;right:20px;background:#d7fff2;color:#082b25;padding:12px 18px;border-radius:12px;display:none;z-index:10;box-shadow:0 8px 30px #0008}
+@media(max-width:950px){.sidebar{width:220px}.main{margin-left:220px;width:calc(100% - 220px);padding:20px}.grid{grid-template-columns:repeat(2,1fr)}.tiles{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.sidebar{transform:translateX(-100%);transition:.25s;width:260px}.sidebar.open{transform:translateX(0)}.main{margin:0;width:100%;padding:17px 14px 75px}.mobilebar{display:flex;position:sticky;top:0;z-index:4;background:#08172a;padding:10px 14px;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}.mobilebar button{background:#173653;color:white;border:0;padding:8px 12px;border-radius:9px}.top h1{font-size:21px}.welcome{padding:20px}.welcome h2{font-size:20px}.welcome .orb{font-size:45px}.grid{gap:9px}.stat{padding:13px}.stat strong{font-size:22px}.tiles,.two,.three{grid-template-columns:1fr}.sectionhead{align-items:flex-start;flex-direction:column}}
+</style></head>
 <body>
-<header>
-  <div class="brand">ASHRAF ALI EMON</div>
-  <div class="sub">NETWORK SCANNER & INTERNET TEST</div>
-</header>
-
-<main>
-  <section class="status">
-    <div class="statusline">
-      <div id="dot" class="dot"></div>
-      <div>
-        <strong id="connectionStatus">সংযোগ পরীক্ষা হচ্ছে...</strong>
-        <div id="connectionDetail" class="muted">আপনার ইন্টারনেট সংযোগের অবস্থা</div>
-      </div>
-    </div>
-  </section>
-
-  <nav>
-    <button class="active" data-page="home">Home</button>
-    <button data-page="wifi">Wi-Fi</button>
-    <button data-page="mobile">Mobile</button>
-    <button data-page="history">History</button>
-  </nav>
-
-  <section id="home" class="page active">
-    <h2>Network Dashboard</h2>
-    <p class="muted">আপনার সংযোগ পরীক্ষা করুন</p>
-
-    <div class="grid">
-      <div class="card">
-        <div class="icon">📶</div>
-        <h3>Wi-Fi</h3>
-        <div id="wifiSummary" class="muted">তথ্য যাচাই হচ্ছে</div>
-        <p><button onclick="showPage('wifi')">Wi-Fi পরীক্ষা</button></p>
-      </div>
-      <div class="card">
-        <div class="icon">📡</div>
-        <h3>Mobile Network</h3>
-        <div id="mobileSummary" class="muted">তথ্য যাচাই হচ্ছে</div>
-        <p><button onclick="showPage('mobile')">মোবাইল পরীক্ষা</button></p>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>🌐 Internet Speed / Latency Test</h3>
-      <p class="muted">ইন্টারনেটে পৌঁছানো যাচ্ছে কি না এবং আনুমানিক প্রতিক্রিয়া সময় পরীক্ষা করুন।</p>
-      <button id="testBtn" onclick="runTest()">ইন্টারনেট পরীক্ষা করুন</button>
-      <div id="testResult" class="muted" style="margin-top:14px"></div>
-    </div>
-
-    <div class="info">
-      নিরাপত্তা নোট: এই ওয়েবসাইট অন্যের Wi-Fi পাসওয়ার্ড বের করে না এবং অনুমতি ছাড়া নেটওয়ার্কে প্রবেশ করে না।
-    </div>
-  </section>
-
-  <section id="wifi" class="page">
-    <h2>📶 Wi-Fi Scanner</h2>
-    <p class="muted">Wi-Fi সংযোগের অবস্থা</p>
-
-    <div class="card">
-      <div class="row"><span>ইন্টারনেট সংযোগ</span><span id="wifiOnline">—</span></div>
-      <div class="row"><span>সংযোগের ধরন</span><span id="wifiType">—</span></div>
-      <div class="row"><span>Wi-Fi নেটওয়ার্কের নাম</span><span>ব্রাউজার থেকে অনুপলভ্য</span></div>
-      <div class="row"><span>সিগন্যাল শক্তি</span><span>ব্রাউজার থেকে অনুপলভ্য</span></div>
-    </div>
-
-    <div class="info">
-      গুরুত্বপূর্ণ: সাধারণ মোবাইল ব্রাউজার আশেপাশের সব Wi-Fi-এর নাম ও সিগন্যাল শক্তি স্ক্যান করতে পারে না। এই তথ্যের জন্য উপযুক্ত অনুমতিসহ Android অ্যাপ লাগবে।
-    </div>
-
-    <button onclick="refreshInfo()">সংযোগের তথ্য আপডেট করুন</button>
-  </section>
-
-  <section id="mobile" class="page">
-    <h2>📡 Mobile Network Scanner</h2>
-    <p class="muted">ব্রাউজার যে নেটওয়ার্ক তথ্য দিতে পারে</p>
-
-    <div class="card">
-      <div class="row"><span>ইন্টারনেট সংযোগ</span><span id="mobOnline">—</span></div>
-      <div class="row"><span>সংযোগের ধরন</span><span id="mobType">—</span></div>
-      <div class="row"><span>আনুমানিক ডাউনলিংক</span><span id="mobDown">—</span></div>
-      <div class="row"><span>আনুমানিক RTT</span><span id="mobRtt">—</span></div>
-      <div class="row"><span>SIM অপারেটর</span><span>ব্রাউজার থেকে অনুপলভ্য</span></div>
-      <div class="row"><span>4G / 5G নিশ্চিতকরণ</span><span id="mobCell">নিশ্চিত করা যায় না</span></div>
-    </div>
-
-    <div class="info">
-      Android ও Chrome-এর সংস্করণভেদে কিছু তথ্য পাওয়া নাও যেতে পারে। এই তথ্য দিয়ে প্রকৃত মোবাইল টাওয়ার, SIM অপারেটর বা সেলুলার সিগন্যালের dBm নিশ্চিত করা সম্ভব নয়।
-    </div>
-
-    <button onclick="refreshInfo()">মোবাইল নেটওয়ার্ক আপডেট</button>
-  </section>
-
-  <section id="history" class="page">
-    <h2>📋 Test History</h2>
-    <p class="muted">এই ব্রাউজারে সংরক্ষিত পরীক্ষার ফলাফল</p>
-    <div id="historyList" class="card"></div>
-    <button class="danger" onclick="clearHistory()">সব History মুছুন</button>
-  </section>
-</main>
-
-<footer>ASHRAF ALI EMON · Network Tools</footer>
-
-<script>
-const $ = id => document.getElementById(id);
-
-function showPage(id){
-  document.querySelectorAll(".page").forEach(p=>{
-    p.classList.toggle("active",p.id===id);
-  });
-  document.querySelectorAll("nav button").forEach(b=>{
-    b.classList.toggle("active",b.dataset.page===id);
-  });
-  if(id==="history") renderHistory();
-  if(id==="wifi"||id==="mobile") refreshInfo();
-}
-
-document.querySelectorAll("nav button").forEach(b=>{
-  b.addEventListener("click",()=>showPage(b.dataset.page));
-});
-
-function getConnection(){
-  return navigator.connection ||
-         navigator.mozConnection ||
-         navigator.webkitConnection ||
-         null;
-}
-
-function refreshInfo(){
-  const online=navigator.onLine;
-  const conn=getConnection();
-
-  $("dot").className="dot "+(online?"good":"bad");
-  $("connectionStatus").textContent=online
-    ?"ডিভাইস অনলাইন":"ডিভাইস অফলাইন";
-  $("connectionDetail").textContent=online
-    ?"ইন্টারনেট পরীক্ষা করে আরও তথ্য দেখুন"
-    :"আপনার ডিভাইস ইন্টারনেট সংযুক্ত নয়";
-
-  $("wifiOnline").textContent=online?"অনলাইন":"অফলাইন";
-  $("mobOnline").textContent=online?"অনলাইন":"অফলাইন";
-  $("wifiSummary").textContent=online
-    ?"ইন্টারনেট সংযুক্ত":"ইন্টারনেট সংযুক্ত নয়";
-  $("mobileSummary").textContent=online
-    ?"অনলাইন":"অফলাইন";
-
-  const type=conn && conn.type ? conn.type : "তথ্য পাওয়া যায়নি";
-  const effective=conn && conn.effectiveType
-    ? conn.effectiveType : "তথ্য পাওয়া যায়নি";
-
-  $("wifiType").textContent=type;
-  $("mobType").textContent=effective;
-  $("mobDown").textContent=conn && Number.isFinite(conn.downlink)
-    ? conn.downlink+" Mbps":"অনুপলভ্য";
-  $("mobRtt").textContent=conn && Number.isFinite(conn.rtt)
-    ? conn.rtt+" ms":"অনুপলভ্য";
-
-  $("mobCell").textContent=conn && conn.type
-    ? "ব্রাউজার-প্রদত্ত সংযোগের ধরন; 4G/5G নিশ্চিত নয়"
-    : "তথ্য পাওয়া যায়নি";
-}
-
-function getHistory(){
-  try{
-    return JSON.parse(localStorage.getItem("emonNetworkHistory")||"[]");
-  }catch(e){return [];}
-}
-
-function saveHistory(title,result){
-  const items=getHistory();
-  items.unshift({
-    title:title,
-    result:result,
-    date:new Date().toLocaleString()
-  });
-  try{
-    localStorage.setItem("emonNetworkHistory",JSON.stringify(items.slice(0,50)));
-  }catch(e){}
-}
-
-function renderHistory(){
-  const items=getHistory();
-  const list=$("historyList");
-  if(!items.length){
-    list.textContent="এখনও কোনো পরীক্ষার ফলাফল সংরক্ষিত নেই।";
-    return;
-  }
-  list.replaceChildren();
-  items.forEach(item=>{
-    const div=document.createElement("div");
-    div.className="history-item";
-    const title=document.createElement("strong");
-    title.textContent=item.title;
-    const result=document.createElement("div");
-    result.textContent=item.result;
-    const date=document.createElement("div");
-    date.className="muted";
-    date.textContent=item.date;
-    div.append(title,result,date);
-    list.append(div);
-  });
-}
-
-function clearHistory(){
-  if(confirm("আপনি কি সব পরীক্ষার History মুছে ফেলতে চান?")){
-    localStorage.removeItem("emonNetworkHistory");
-    renderHistory();
-  }
-}
-
-async function runTest(){
-  const btn=$("testBtn");
-  const result=$("testResult");
-  btn.disabled=true;
-  result.textContent="ইন্টারনেট পরীক্ষা করা হচ্ছে...";
-  const start=performance.now();
-
-  try{
-    if(!navigator.onLine) throw new Error("ডিভাইস অফলাইন");
-
-    await fetch("https://www.gstatic.com/generate_204",{
-      mode:"no-cors",
-      cache:"no-store"
-    });
-
-    const elapsed=Math.round(performance.now()-start);
-    const message="পরীক্ষার ঠিকানায় পৌঁছানো গেছে। আনুমানিক সময়: "+elapsed+" ms";
-    result.textContent=message;
-    saveHistory("Internet Test",message);
-  }catch(e){
-    const message="পরীক্ষা ব্যর্থ হয়েছে। ইন্টারনেট, DNS বা সংযোগ পরীক্ষা করুন।";
-    result.textContent=message;
-    saveHistory("Internet Test",message);
-  }finally{
-    btn.disabled=false;
-    refreshInfo();
-  }
-}
-
-window.addEventListener("online",refreshInfo);
-window.addEventListener("offline",refreshInfo);
-
-if(getConnection() && getConnection().addEventListener){
-  getConnection().addEventListener("change",refreshInfo);
-}
-
-refreshInfo();
-renderHistory();
-</script>
-</body>
-</html>
+<div class="mobilebar"><strong>🧪 ScienceLab</strong><button onclick="toggleMenu()">☰ মেনু</button></div>
+<div class="layout">
+<aside class="sidebar" id="sidebar"><div class="brand"><div class="logo">⚛</div><div><strong>ScienceLab</strong><small>HSC Research Portal</small></div></div>
+<nav class="nav">
+<div class="navlabel">মূল মেনু</div>
+<button class="active" data-page="home"><span class="ico">⌂</span> ড্যাশবোর্ড</button>
+<button data-page="subjects"><span class="ico">📚</span> বিজ্ঞান বিষয়সমূহ</button>
+<button data-page="research"><span class="ico">🔬</span> গবেষণা ও প্রজেক্ট</button>
+<button data-page="lab"><span class="ico">🧫</span> ল্যাব নোটবুক</button>
+<button data-page="notes"><span class="ico">📝</span> নোটস ও আইডিয়া</button>
+<div class="navlabel">বিজ্ঞান টুলস</div>
+<button data-page="calculator"><span class="ico">🧮</span> বৈজ্ঞানিক ক্যালকুলেটর</button>
+<button data-page="periodic"><span class="ico">⚛️</span> পর্যায় সারণি</button>
+<button data-page="formulas"><span class="ico">📐</span> সূত্র ভান্ডার</button>
+<button data-page="safety"><span class="ico">🥽</span> ল্যাব নিরাপত্তা</button>
+<div class="navlabel">ব্যক্তিগত ব্যবস্থাপনা</div>
+<button data-page="tasks"><span class="ico">☑️</span> কাজের তালিকা</button>
+<button data-page="references"><span class="ico">📖</span> তথ্যসূত্র</button>
+<button data-page="about"><span class="ico">ℹ️</span> ব্যবহার নির্দেশিকা</button>
+</nav><div class="sidefoot">💡 আপনার নোট, গবেষণা ও কাজের তালিকা এই ব্রাউজারেই সংরক্ষিত থাকবে। নিয়মিত ব্যাকআপ নিন।</div></aside>
+<main class="main">
+<header class="top"><div><h1 id="pageTitle">ড্যাশবোর্ড</h1><p>শিখুন • অনুসন্ধান করুন • পরীক্ষা করুন • আবিষ্কার করুন</p></div><span class="pill">HSC বিজ্ঞান | বাংলা</span></header>
+<section class="content active" id="home">
+<div class="welcome"><div><h2>স্বাগতম ScienceLab-এ! 👋</h2><p>আপনার বিজ্ঞান শিক্ষা ও গবেষণার ব্যক্তিগত কর্মক্ষেত্র।<br>প্রশ্ন করুন, তথ্য যাচাই করুন এবং নিজের আবিষ্কার লিখে রাখুন।</p><div class="actions"><button class="btn" onclick="showPage('research')">গবেষণা শুরু করুন →</button><button class="btn secondary" onclick="showPage('notes')">নোট লিখুন</button></div></div><div class="orb">🔭</div></div>
+<div class="grid"><div class="stat"><small>সংরক্ষিত গবেষণা</small><strong id="countResearch">০</strong><span>আপনার প্রজেক্ট</span></div><div class="stat"><small>ল্যাব রেকর্ড</small><strong id="countLab">০</strong><span>পরীক্ষার তথ্য</span></div><div class="stat"><small>ব্যক্তিগত নোট</small><strong id="countNotes">০</strong><span>আইডিয়া ও শেখা</span></div><div class="stat"><small>অসমাপ্ত কাজ</small><strong id="countTasks">০</strong><span>পরিকল্পনা</span></div></div>
+<div class="sectionhead"><div><h2>দ্রুত প্রবেশ</h2><p>প্রয়োজনীয় টুল এক ক্লিকেই খুলুন</p></div></div>
+<div class="tiles">
+<div class="tile" onclick="showPage('subjects')"><div class="big">📚</div><h3>বিষয়ভিত্তিক পড়াশোনা</h3><p>পদার্থবিজ্ঞান, রসায়ন, জীববিজ্ঞান ও উচ্চতর গণিত।</p></div>
+<div class="tile" onclick="showPage('research')"><div class="big">🔬</div><h3>গবেষণা প্রজেক্ট</h3><p>গবেষণার প্রশ্ন, উদ্দেশ্য, পদ্ধতি ও ফলাফল সাজান।</p></div>
+<div class="tile" onclick="showPage('lab')"><div class="big">🧪</div><h3>ল্যাব নোটবুক</h3><p>পরীক্ষার উপকরণ, পর্যবেক্ষণ ও সিদ্ধান্ত লিখুন।</p></div>
+<div class="tile" onclick="showPage('calculator')"><div class="big">🧮</div><h3>বৈজ্ঞানিক ক্যালকুলেটর</h3><p>গাণিতিক হিসাব ও একক রূপান্তর করুন।</p></div>
+<div class="tile" onclick="showPage('formulas')"><div class="big">📐</div><h3>সূত্র ভান্ডার</h3><p>বিজ্ঞান ও গণিতের দরকারি সূত্র দেখুন।</p></div>
+<div class="tile" onclick="showPage('references')"><div class="big">📖</div><h3>তথ্যসূত্র</h3><p>বই, জার্নাল ও ওয়েবসাইটের সূত্র সংরক্ষণ করুন।</p></div></div>
+<div class="sectionhead"><h2>গবেষণার ভালো অভ্যাস</h2></div><div class="card"><p>১. একটি নির্দিষ্ট ও পরীক্ষাযোগ্য প্রশ্ন নির্বাচন করুন। ২. নির্ভরযোগ্য বই, জার্নাল ও সরকারি উৎস থেকে তথ্য নিন। ৩. নিজের পর্যবেক্ষণ ও অন্যের তথ্য আলাদা রাখুন। ৪. ফলাফল না মিললেও সঠিকভাবে লিখুন। ৫. প্রতিটি তথ্যের উৎস উল্লেখ করুন।</p></div>
+</section>
+<section class="content" id="subjects"><div class="sectionhead"><div><h2>HSC বিজ্ঞান বিভাগের বিষয়সমূহ</h2><p>প্রতিটি বিষয়ে নিজের অধ্যায়ভিত্তিক লক্ষ্য ও নোট তৈরি করুন।</p></div></div><div class="tiles">
+<div class="tile subject"><div class="big">⚙️</div><h3>পদার্থবিজ্ঞান ১ম ও ২য় পত্র</h3><p>ভৌত জগৎ, ভেক্টর, গতিবিদ্যা, বল, কাজ-শক্তি, তাপ, তরঙ্গ, বিদ্যুৎ, আলোকবিজ্ঞান ও আধুনিক পদার্থবিজ্ঞান।</p></div>
+<div class="tile subject"><div class="big">🧪</div><h3>রসায়ন ১ম ও ২য় পত্র</h3><p>পরমাণুর গঠন, পর্যায়বৃত্ত ধর্ম, রাসায়নিক বন্ধন, মোল, সাম্যাবস্থা, জৈব রসায়ন ও তড়িৎ রসায়ন।</p></div>
+<div class="tile subject"><div class="big">🧬</div><h3>জীববিজ্ঞান ১ম ও ২য় পত্র</h3><p>কোষ, অণুজীব, উদ্ভিদ, প্রাণী, মানবদেহ, জিনতত্ত্ব, বিবর্তন ও পরিবেশ।</p></div>
+<div class="tile subject"><div class="big">📐</div><h3>উচ্চতর গণিত ১ম ও ২য় পত্র</h3><p>ম্যাট্রিক্স, সরলরেখা, বৃত্ত, ত্রিকোণমিতি, অন্তরীকরণ, যোগজীকরণ ও সম্ভাবনা।</p></div>
+<div class="tile subject"><div class="big">💻</div><h3>তথ্য ও যোগাযোগ প্রযুক্তি</h3><p>সংখ্যা পদ্ধতি, লজিক গেট, প্রোগ্রামিং, ডেটাবেজ ও নেটওয়ার্ক।</p></div>
+<div class="tile subject"><div class="big">📘</div><h3>বাংলা ও ইংরেজি</h3><p>পাঠ অনুধাবন, রচনা, প্রতিবেদন, যোগাযোগ ও বৈজ্ঞানিক লেখালেখি।</p></div></div><p class="note">অধ্যায়ের তালিকা বোর্ড/সিলেবাস অনুযায়ী যাচাই করে নেবেন। এটি একটি বিষয়ভিত্তিক পরিকল্পনা, সরকারি পাঠ্যবইয়ের বিকল্প নয়।</p></section>
+<section class="content" id="research"><div class="sectionhead"><div><h2>গবেষণা ও প্রজেক্ট ওয়ার্কস্পেস</h2><p>নিজের গবেষণার পরিকল্পনা ও অগ্রগতি সংরক্ষণ করুন।</p></div></div><div class="two"><div class="card"><h3>নতুন গবেষণা তৈরি করুন</h3><div class="field"><label>গবেষণার শিরোনাম</label><input id="rTitle" placeholder="যেমন: পানির pH ও উদ্ভিদের বৃদ্ধি"></div><div class="field"><label>বিষয়</label><select id="rSubject"><option>পদার্থবিজ্ঞান</option><option>রসায়ন</option><option>জীববিজ্ঞান</option><option>উচ্চতর গণিত</option><option>আইসিটি</option><option>আন্তঃবিষয়ক</option></select></div><div class="field"><label>গবেষণার প্রশ্ন</label><textarea id="rQuestion" placeholder="আপনি কোন প্রশ্নের উত্তর খুঁজছেন?"></textarea></div><div class="field"><label>উদ্দেশ্য ও অনুমান</label><textarea id="rAim" placeholder="গবেষণার উদ্দেশ্য এবং আপনার প্রাথমিক অনুমান..."></textarea></div><div class="field"><label>পদ্ধতি / পরিকল্পনা</label><textarea id="rMethod" placeholder="কীভাবে তথ্য সংগ্রহ ও পরীক্ষা করবেন?"></textarea></div><div class="actions"><button class="btn" onclick="addResearch()">গবেষণা সংরক্ষণ</button></div></div><div class="card"><h3>আমার গবেষণাগুলো</h3><div id="researchList" class="list"><div class="empty">এখনো কোনো গবেষণা যোগ করা হয়নি।</div></div></div></div></section>
+<section class="content" id="lab"><div class="sectionhead"><div><h2>ডিজিটাল ল্যাব নোটবুক</h2><p>প্রতিটি পরীক্ষার বিবরণ তারিখসহ লিখে রাখুন।</p></div></div><div class="two"><div class="card"><h3>পরীক্ষার রেকর্ড</h3><div class="field"><label>পরীক্ষার নাম</label><input id="lTitle" placeholder="পরীক্ষার নাম"></div><div class="field"><label>তারিখ</label><input id="lDate" type="date"></div><div class="field"><label>উপকরণ</label><textarea id="lMaterials" placeholder="যন্ত্রপাতি ও উপকরণের তালিকা"></textarea></div><div class="field"><label>পদ্ধতি ও পর্যবেক্ষণ</label><textarea id="lObservation" placeholder="কী করেছেন, কী দেখেছেন?"></textarea></div><div class="field"><label>ফলাফল ও সিদ্ধান্ত</label><textarea id="lResult" placeholder="ফলাফল, ত্রুটি ও সিদ্ধান্ত"></textarea></div><button class="btn" onclick="addLab()">রেকর্ড সংরক্ষণ</button></div><div class="card"><h3>সংরক্ষিত রেকর্ড</h3><div id="labList" class="list"><div class="empty">এখনো কোনো রেকর্ড নেই।</div></div></div></div><p class="note">নিরাপত্তা নির্দেশনা ও শিক্ষকের অনুমতি ছাড়া রাসায়নিক বা বৈদ্যুতিক পরীক্ষা করবেন না।</p></section>
+<section class="content" id="notes"><div class="sectionhead"><div><h2>নোটস ও গবেষণার আইডিয়া</h2><p>পড়াশোনার নোট, প্রশ্ন ও নতুন ধারণা লিখুন।</p></div></div><div class="two"><div class="card"><h3>নতুন নোট</h3><div class="field"><label>শিরোনাম</label><input id="nTitle" placeholder="নোটের শিরোনাম"></div><div class="field"><label>বিষয়/ক্যাটাগরি</label><select id="nCategory"><option>পদার্থবিজ্ঞান</option><option>রসায়ন</option><option>জীববিজ্ঞান</option><option>গণিত</option><option>গবেষণা আইডিয়া</option><option>অন্যান্য</option></select></div><div class="field"><label>বিস্তারিত</label><textarea id="nBody" placeholder="এখানে লিখুন..."></textarea></div><button class="btn" onclick="addNote()">নোট সংরক্ষণ</button></div><div class="card"><h3>আমার নোট</h3><div id="noteList" class="list"><div class="empty">এখনো কোনো নোট নেই।</div></div></div></div></section>
+<section class="content" id="calculator"><div class="sectionhead"><div><h2>বৈজ্ঞানিক ক্যালকুলেটর</h2><p>সাধারণ হিসাব, ত্রিকোণমিতি ও একক রূপান্তর।</p></div></div><div class="two"><div class="card"><h3>ক্যালকুলেটর</h3><div class="field"><label>হিসাব লিখুন (উদাহরণ: sin(30), sqrt(25), 5^2)</label><input id="calcInput" placeholder="গণিতের expression" onkeydown="if(event.key==='Enter')calculate()"></div><div class="actions"><button class="btn" onclick="calculate()">হিসাব করুন</button><button class="btn secondary" onclick="document.getElementById('calcInput').value=''">মুছুন</button></div><div class="field"><label>ফলাফল</label><div class="formula" id="calcResult">এখানে ফলাফল দেখাবে</div></div><p class="note">sin, cos, tan ডিগ্রি এককে। ব্যবহার: sin(30), cos(60), log(100), sqrt(9), pi*2।</p></div><div class="card"><h3>একক রূপান্তর</h3><div class="field"><label>মান</label><input type="number" id="unitValue" value="1"></div><div class="field"><label>রূপান্তর</label><select id="unitType"><option value="km-m">কিলোমিটার → মিটার</option><option value="m-cm">মিটার → সেন্টিমিটার</option><option value="cm-mm">সেন্টিমিটার → মিলিমিটার</option><option value="kg-g">কিলোগ্রাম → গ্রাম</option><option value="g-kg">গ্রাম → কিলোগ্রাম</option><option value="hr-s">ঘণ্টা → সেকেন্ড</option><option value="c-k">সেলসিয়াস → কেলভিন</option><option value="k-c">কেলভিন → সেলসিয়াস</option><option value="l-ml">লিটার → মিলিলিটার</option></select></div><button class="btn" onclick="convertUnit()">রূপান্তর করুন</button><div class="field"><label>ফলাফল</label><div class="formula" id="unitResult">এখানে ফলাফল দেখাবে</div></div></div></div></section>
+<section class="content" id="periodic"><div class="sectionhead"><div><h2>পর্যায় সারণি — নির্বাচিত মৌল</h2><p>মৌলের প্রতীক বা নাম লিখে খুঁজুন। এটি শিক্ষামূলক সংক্ষিপ্ত তালিকা।</p></div></div><div class="card"><input class="search" id="elementSearch" placeholder="মৌল খুঁজুন: Oxygen, O, অক্সিজেন..." oninput="renderElements()"><div id="elementGrid" class="tiles" style="margin-top:15px"></div></div></section>
+<section class="content" id="formulas"><div class="sectionhead"><div><h2>দরকারি সূত্র ভান্ডার</h2><p>HSC পর্যায়ের কিছু মৌলিক সূত্র — অধ্যায় ও বইয়ের সঙ্গে মিলিয়ে নেবেন।</p></div></div><div class="card"><div class="field"><input class="search" id="formulaSearch" placeholder="সূত্র বা বিষয় খুঁজুন..." oninput="renderFormulas()"></div><div id="formulaList" class="list"></div></div></section>
+<section class="content" id="safety"><div class="sectionhead"><h2>ল্যাব নিরাপত্তা নির্দেশিকা</h2></div><div class="tiles">
+<div class="tile"><div class="big">🥽</div><h3>সুরক্ষা সরঞ্জাম</h3><p>প্রয়োজনে সেফটি গগলস, ল্যাব কোট ও উপযুক্ত গ্লাভস ব্যবহার করুন।</p></div>
+<div class="tile"><div class="big">🧪</div><h3>রাসায়নিক</h3><p>লেবেল পড়ুন, গন্ধ সরাসরি শুঁকবেন না, কখনো রাসায়নিক মুখে নেবেন না।</p></div>
+<div class="tile"><div class="big">⚡</div><h3>বিদ্যুৎ</h3><p>ভেজা হাতে বৈদ্যুতিক যন্ত্র ধরবেন না। সংযোগ বদলানোর আগে বিদ্যুৎ বন্ধ করুন।</p></div>
+<div class="tile"><div class="big">🔥</div><h3>তাপ ও আগুন</h3><p>শিক্ষকের তত্ত্বাবধান ছাড়া আগুন বা গরম যন্ত্র ব্যবহার করবেন না।</p></div>
+<div class="tile"><div class="big">🚑</div><h3>দুর্ঘটনা</h3><p>দুর্ঘটনা হলে কাজ বন্ধ করে শিক্ষক/ল্যাব সহকারীকে জানান এবং প্রতিষ্ঠানের জরুরি প্রক্রিয়া অনুসরণ করুন।</p></div>
+<div class="tile"><div class="big">🗑️</div><h3>বর্জ্য ব্যবস্থাপনা</h3><p>রাসায়নিক বর্জ্য সিঙ্কে ফেলবেন না; প্রতিষ্ঠানের নির্দেশনা মেনে নিষ্পত্তি করুন।</p></div></div></section>
+<section class="content" id="tasks"><div class="sectionhead"><div><h2>কাজের তালিকা</h2><p>পড়াশোনা ও গবেষণার কাজ পরিকল্পনা করুন।</p></div></div><div class="card"><div class="field"><label>নতুন কাজ</label><input id="taskInput" placeholder="যেমন: পদার্থবিজ্ঞান ১ম অধ্যায় পড়ব" onkeydown="if(event.key==='Enter')addTask()"></div><button class="btn" onclick="addTask()">কাজ যোগ করুন</button><div id="taskList" class="list" style="margin-top:15px"></div></div></section>
+<section class="content" id="references"><div class="sectionhead"><div><h2>তথ্যসূত্র ও রেফারেন্স</h2><p>গবেষণায় ব্যবহৃত উৎসের তথ্য সংরক্ষণ করুন।</p></div></div><div class="two"><div class="card"><h3>নতুন তথ্যসূত্র যোগ করুন</h3><div class="field"><label>বই/প্রবন্ধ/ওয়েবসাইটের নাম</label><input id="refTitle" placeholder="উৎসের শিরোনাম"></div><div class="field"><label>লেখক / প্রতিষ্ঠান</label><input id="refAuthor" placeholder="লেখক বা প্রকাশক"></div><div class="field"><label>লিংক বা প্রকাশনার তথ্য</label><input id="refLink" placeholder="URL / প্রকাশের সাল / পৃষ্ঠা"></div><button class="btn" onclick="addReference()">তথ্যসূত্র সংরক্ষণ</button></div><div class="card"><h3>সংরক্ষিত তথ্যসূত্র</h3><div id="refList" class="list"></div></div></div><p class="note">অন্যের লেখা নিজের নামে ব্যবহার করবেন না। উদ্ধৃতি, তথ্য ও ছবি ব্যবহার করলে উৎস উল্লেখ করুন।</p></section>
+<section class="content" id="about"><div class="card"><h2>ScienceLab ব্যবহার নির্দেশিকা</h2><p>এই ওয়েবসাইটটি HSC বিজ্ঞান বিভাগের শিক্ষার্থীদের পড়াশোনা ও প্রাথমিক গবেষণা পরিকল্পনায় 
